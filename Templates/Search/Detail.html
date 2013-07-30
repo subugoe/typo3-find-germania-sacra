@@ -1,0 +1,63 @@
+{namespace s=Tx_Find_ViewHelpers}
+<f:layout name="Default"/>
+
+<f:section name="main">
+<f:debug>{_all}</f:debug>
+	<s:pageTitle>{document.fields.kloster} – {pageTitle}</s:pageTitle>
+	<f:render partial="Page/Standard" arguments="{_all}"/>
+	<f:render partial="Components/DetailResultPager" arguments="{_all}"/>
+
+	<article class="detail">
+		<f:render partial="GS/Karte" arguments="{_all}"/>
+
+		<h1>
+			<f:render partial="Display/Field/General" arguments="{results:results, document:document, field:'kloster'}"/>
+		</h1>
+
+		<div class="main">
+			<f:if condition="{document.patrozinium}">
+				<section class="patrozinium">
+					<h2>Patrozinium</h2>
+					<p>
+						<f:render partial="Display/Field/General" arguments="{results:results, document:document, field:'patrozinium'}"/>
+					</p>
+				</section>
+			</f:if>
+
+			<f:render partial="GS/Standorte" arguments="{_all}"/>
+
+			<f:render partial="GS/Orden" arguments="{_all}"/>
+
+			<f:render partial="GS/Band" arguments="{_all}"/>
+
+			<f:if condition="{document.bemerkung_kloster.0}">
+				<section class="bemerkung">
+					<h2>Bemerkung</h2>
+					<p>
+						<f:render partial="Display/Field/General" arguments="{results:results, document:document, field:'bemerkung_kloster'}"/>
+					</p>
+				</section>
+			</f:if>
+
+			<f:render partial="GS/Personen" arguments="{_all}"/>
+
+			<f:if condition="{document.literatur}">
+				<section class="literatur">
+					<h2>Literatur</h2>
+					<f:render partial="Display/Field/List" arguments="{results:results, document:document, field:'literatur'}"/>
+				</section>
+			</f:if>
+
+			<section class="permalink">
+				<h2>Zitierlink</h2>
+				<p>
+					<f:link.external uri="http://kloester.germania-sacra.de/gsn/{document.sql_uid}">
+						http://kloester.germania-sacra.de/gsn/{document.sql_uid}
+					</f:link.external>
+				</p>
+			</section>
+
+			<f:render partial="GS/Links" arguments="{_all}"/>
+		</div>
+	</article>
+</f:section>
