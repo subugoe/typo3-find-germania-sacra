@@ -5,7 +5,6 @@
  */
 var germaniaSacra = (function () {
 	var config = {};
-	var baseURL = 'http://vlib.sub.uni-goettingen.de/test/typo3conf/ext/find/Projects/germania-sacra/Resources/';
 	var originalPositions;
 	var mapInfo;
 	var openInfoWindow;
@@ -296,7 +295,7 @@ var germaniaSacra = (function () {
 					};
 					if (standort.icon) {
 						markerOptions['icon'] = {
-							'url': baseURL + 'Ordenssymbole/' + standort.icon + '.png',
+							'url': config.resourcesBaseURL + 'Ordenssymbole/' + standort.icon + '.png',
 							'scaledSize': new google.maps.Size(30, 45),
 							'origin': new google.maps.Point(0, 0),
 							'anchor': new google.maps.Point(15, 45)
@@ -362,7 +361,7 @@ var germaniaSacra = (function () {
 						fileName = Object.keys(ordenImages)[0] + '.png';
 					}
 
-					var iconURL = baseURL + 'Ordenssymbole/' + fileName;
+					var iconURL = config.resourcesBaseURL + 'Ordenssymbole/' + fileName;
 					var icon = {
 						'url': iconURL,
 						'scaledSize': new google.maps.Size(20, 30),
@@ -502,7 +501,7 @@ var germaniaSacra = (function () {
 			new google.maps.KmlLayer({
 				'map': map,
 				'preserveViewport': true,
-				'url': baseURL + 'Bistumsgrenzen/Bistumsgrenzen.kml'
+				'url': config.resourcesBaseURL + 'Bistumsgrenzen/Bistumsgrenzen.kml'
 			});
 		}
 	};
