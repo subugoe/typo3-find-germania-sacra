@@ -1,5 +1,14 @@
 {namespace s=Subugoe\Find\ViewHelpers}
 {namespace bib=Ipf\Bib\ViewHelpers}
+<f:comment>
+	Creates markup for the bibliography record in the »bibitem« variable
+	loaded by the bib extension with an added note (e.g. page number) from the
+	»note« variable.
+
+	This format was developed to handle the bibitems found in the Germania Sacra
+	bibliography (article, book, incollection) and create the (somewhat uncommon)
+	ouput format required by the project.
+</f:comment>
 <bib:renderPublication bibliographyItem="{bibitem}">
 	<f:if condition="{f:count(subject:bibitem.authors)} > 0">
 		<bib:renderPublicationField field="authors" xml="1" suffix=":">
