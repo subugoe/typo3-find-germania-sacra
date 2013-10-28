@@ -1,10 +1,10 @@
-# »find« Extension configuration for the Germania Sacra index.
+# »find« extension configuration for the Germania Sacra index.
 #
 # 2013 Sven-S. Porst, SUB Göttingen <porst@sub.uni-goettingen.de>
 #
 plugin.tx_find {
 	# Paths for own templates and partials.
-	# Most of them us symlinks to point back to the standard files provided by the extension.
+	# Most of them use symlinks to point back to the standard files provided by the extension.
 	view {
 		templateRootPath = EXT:find/Projects/germania-sacra/Templates/
 		partialRootPath = EXT:find/Projects/germania-sacra/Partials/
@@ -30,6 +30,8 @@ plugin.tx_find {
 		tx_bib_pid = 107
 
 		# Add a filter query to only return documents marked as »Online«.
+		# This will be removed when project members are logged in with their account.
+		# (See the note at the end of the configuration file for details.)
 		additionalFilters {
 			1 = bearbeitungsstatus:Online
 		}

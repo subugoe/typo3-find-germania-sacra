@@ -3,7 +3,7 @@ This repository contains the configuration for the [TYPO3 find extension](https:
 
 
 ## Setup
-To set up the Germania Sacra display, you need
+To set up the Germania Sacra index, you need
 
 1. to have this repository as the `Projects/germania-sacra` subfolder inside the find extension
 
@@ -23,13 +23,14 @@ To set up the Germania Sacra display, you need
 		}
 
 4. a page on your site with the Germania Sacra **bibliography** imported in the [bib extension](https://github.com/subugoe/typo3-bib) and the page ID of that page configured in the template of your page, e.g.
+
 		plugin.tx_find.settings.tx_bib_pid = 135
 
 5. for **access control**:
 
 	1. a TYPO3 frontend user group named »Germania Sacra« set up for users who may see as-yet unpublished records
 
-	2. add the following TypoScript condition to your template (with 1 replaced by the ID of the Germania Sacra frontend user group) to remove the record filter for project members:
+	2. add the following TypoScript condition to your template (with 1 replaced by the ID of the »Germania Sacra« frontend user group) to remove the record filter for project members:
 
 			[usergroup = 1]
 			plugin.tx_find.settings.additionalFilters.1 >
@@ -66,7 +67,7 @@ To set up the Germania Sacra display, you need
 
 
 ### TypoScript configuration
-The main configuration is done in the germania-sacra.ts file that is included in the template.
+The main configuration is done in the [germania-sacra.ts](germania-sacra.ts) file that is included in the template.
 
 Please refer to that file and its comments for the details.
 
