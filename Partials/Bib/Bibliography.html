@@ -1,5 +1,16 @@
 {namespace s=Subugoe\Find\ViewHelpers}
 {namespace bib=Ipf\Bib\ViewHelpers}
+<f:comment>
+	Creates a section with the bibliography records for this monastery.
+
+	The bibliography records are expected to have been imported with the bib
+	extension with the citekeys also referenced in the data.
+
+	The bib Extension is then used to load and display the bibliography data.
+
+	The note made for a reference for the current monastery (e.g. page number)
+	is included in the output.
+</f:comment>
 <f:if condition="{document.literatur_citekey}">
 	<section class="literatur">
 		<h2>Literatur</h2>

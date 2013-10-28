@@ -1,4 +1,10 @@
 {namespace s=Subugoe\Find\ViewHelpers}
+<f:comment>
+	Creates a section for URLs available for the monastery.
+
+	Inserts a link for each of them, adding the bemerkung field to the displayed
+	text if it is available.
+</f:comment>
 <section class="link">
 	<f:if condition="{document.url}">
 		<h2>

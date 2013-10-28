@@ -1,4 +1,12 @@
 {namespace s=Subugoe\Find\ViewHelpers}
+<f:comment>
+	Creates a section for the people belonging to a monastery.
+
+	Groups people by the office they are holding in the monastery and creates
+	sections for each of the offices. If there are many people, a table of contents
+	allowing to jump to each office is displayed at the beginning. The status
+	of the person information (complete/incomplete) is also displayed.
+</f:comment>
 <f:if condition="{document.person_name}">
 	<section class="person">
 		<h2>

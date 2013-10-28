@@ -1,4 +1,15 @@
 {namespace s=Subugoe\Find\ViewHelpers}
+<f:comment>
+	Creates a section for the Germania Sacra volume information.
+	
+	A monastery can appear in a single volume of the series but the display can
+	have varying levels of detail depending on whether a volume is available
+	digitally or not.
+	This partial distinguishes between the cases:
+		* with / without link
+		* reference with / without page number
+			* with link to the correct page
+</f:comment>
 <f:if condition="{document.band_nummer}">
 	<section class="germania-sacra">
 		<h2>Germania-Sacra-Band</h2>

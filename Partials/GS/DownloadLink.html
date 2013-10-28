@@ -1,5 +1,17 @@
 {namespace s=Subugoe\Find\ViewHelpers}
-<f:comment>TODO: Add facet queries</f:comment>
+<f:comment>
+	Create download links for the current result set.
+
+	As we need exact filtering on these (e.g. for map creation), perform the
+	index query on documents of typ:standort-orden taking into account both the
+	current query and faceting.
+
+	This means we will not know
+	the exact number of results as we have a result set (and count)
+	of typ:kloster documents when creating the links. To compensate for that
+	create a list of links for 500 records each but fetch 1000 documents for
+	the last page to (hopefully) catch the overflow.
+</f:comment>
 <div class="formatDownload">
 	<span class="formatName">{downloadFormat}</span> Download:
 	<f:alias map="{

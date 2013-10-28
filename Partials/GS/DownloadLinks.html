@@ -1,4 +1,8 @@
 {namespace s=Subugoe\Find\ViewHelpers}
+<f:comment>
+	Inserts markup for download links in CSV and BNA formats.
+	The links only appear for frontend users belonging to the »Germania Sacra« group.
+</f:comment>
 <f:security.ifHasRole role="Germania Sacra">
 	<f:if condition="{f:count(subject:results.documents)} > 0">
 		<div class="downloadLinks">

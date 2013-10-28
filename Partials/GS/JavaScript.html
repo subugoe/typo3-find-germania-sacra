@@ -1,5 +1,10 @@
 {namespace s=Subugoe\Find\ViewHelpers}
 {namespace t3jquery=Tx_T3jquery_ViewHelpers}
+<f:comment>
+	Insert the Germania Sacra JavaScript file and set variables with URL templates
+	for further index queries performed by JavaScript to load monastery locations
+	for the maps that are displayed.
+</f:comment>
 <t3jquery:addJQueryAndScript jsfile="EXT:find/Projects/germania-sacra/Resources/germania-sacra.js">
 	<s:data.newArray name="newQ" keys="{1:'raw'}" values="{1:'###TERM###'}">
 		<f:for each="{arguments.q}" as="argument" key="key">

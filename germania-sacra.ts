@@ -407,12 +407,15 @@ tx_find_page_bna {
 
 
 
-# Remove filters suppressing records when the user is logged in.
-# usergroup needs to be compared witht the uid of the frontend user group in TYPO3.
+# To remove access restrictions to unfinished records for project members,
+# use the following setup and:
+# * add it to the Template of your Germania Sacra page
+# * uncomment it
+# * replace the `1` with the ID of the Germania Sacra frontend user group on your site
 #[usergroup = 1]
-plugin.tx_find.settings {
-	additionalFilters {
-		1 >
-	}
-}
+#plugin.tx_find.settings {
+#	additionalFilters {
+#		1 >
+#	}
+#}
 #[global]

@@ -1,5 +1,12 @@
 {namespace s=Subugoe\Find\ViewHelpers}
 {namespace t3jquery=Tx_T3jquery_ViewHelpers}
+<f:comment>
+	Adds the map to the monastery detaily view with information on the markers
+	to set for the current monastery.
+
+	germania-sacra.js will then load other monastery locations close to the current
+	one and insert those into the map in case the user wants to explore the region.
+</f:comment>
 <f:if condition="{document.koordinaten}">
 	<aside>
 		<h2>Karte</h2>

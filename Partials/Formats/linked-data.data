@@ -1,4 +1,13 @@
 {namespace s=Subugoe\Find\ViewHelpers}
+<f:comment>
+	Create triples for the documents passed.
+
+	Include:
+		* monastery information (type, GND, Wikipedia, members)
+		* orders the monastery belonged to (name, reference, memebership with time range)
+		* locations the monastery was situated at (name, geo-information, diocese, time range)
+		* members of the monastery (name, time range, references, membership link)
+</f:comment>
 <s:linkedData.container
 	prefixes="{
 		xsd:'http://www.w3.org/2001/XMLSchema#',
