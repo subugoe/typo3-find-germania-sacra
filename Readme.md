@@ -65,6 +65,9 @@ To set up the Germania Sacra index, you need
 		RewriteCond %{HTTP_HOST} klosterdatenbank.germania-sacra.de
 		RewriteRule .* ?type=1369315139&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=json-ld&tx_find_find\%5Bdata-fields\%5D=*
 
+8. **known issue**: the AdW site’s RealURL configuration (as of 2013-11-01) will remove the `type` parameter for the custom page types configured by this setup. This breaks AJAX calls as well as download links.
+
+
 
 ### TypoScript configuration
 The main configuration is done in the [germania-sacra.ts](germania-sacra.ts) file that is included in the template.
