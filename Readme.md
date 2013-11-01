@@ -40,7 +40,7 @@ To set up the Germania Sacra index, you need
 
 	1. TYPO3 should be configured to serve the page at `http://klosterdatenbank.germania-sacra.de/`
 
-	2. single records should be served at the path `/gsn/123` where 123 is the ID (klosternummer) of the record; this is achieved by adding a RealURL configuration as follows for the page (where _DEFAULT should be replaced by the page ID for the TYPO3 page as the required »gsn« deviates from the auto-configured »id« the extension suggests).
+	2. single records should be served at the path `/gsn/123/` where 123 is the ID (klosternummer) of the record; this is achieved by adding a RealURL configuration as follows for the page (where `_DEFAULT` should be replaced by the page ID for the TYPO3 page as the required »gsn« deviates from the auto-configured »id« the extension suggests).
 
 			'postVarSets' => array(
 				'_DEFAULT' => array(
@@ -123,7 +123,7 @@ Linked data output is returned if a linked data media type is requested in the h
 * rdf: returns the triples in RDF format
 * json-ld: returns the triples in JSON-LD format
 
-Example linked data output in turtle format is available in the [Resources/linked-data-examples](Resources/linked-data-examples folder).
+Example linked data output in turtle format is available in the [Resources/linked-data-examples folder](Resources/linked-data-examples).
 
 
 ## Language
