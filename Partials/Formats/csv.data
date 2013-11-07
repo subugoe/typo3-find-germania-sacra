@@ -53,7 +53,7 @@
 	322:\'orden_ordo\',
 	323:\'orden_symbol\',
 	324:\'orden_typ\'
-}'}"><s:format.csvLine data="{fields}"/>
+}'}"><s:format.CSVLine data="{fields}"/>
 	<f:for each="{results.data.response.docs}" as="doc" iteration="iterator">
 		<s:data.newArray name="line" values="{}">
 			<f:for each="{fields}" as="fieldName">
@@ -68,7 +68,7 @@
 					</f:if>
 				</f:alias>
 			</f:for>
-			<s:format.csvLine data="{line}"/>
+			<s:format.CSVLine data="{line}"/>
 		</s:data.newArray>
 	</f:for>
 </f:alias>
