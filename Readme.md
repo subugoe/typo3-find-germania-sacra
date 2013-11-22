@@ -40,7 +40,7 @@ To set up the Germania Sacra index, you need
 
 	1. TYPO3 should be configured to serve the page at `http://klosterdatenbank.germania-sacra.de/`
 
-	2. single records should be served at the path `/gsn/123/` where 123 is the ID (klosternummer) of the record; this is achieved by adding a RealURL configuration as follows for the page (where `_DEFAULT` should be replaced by the page ID for the TYPO3 page as the required »gsn« deviates from the auto-configured »id« the extension suggests).
+	2. single record pages should be served at the path `/gsn/123/` where 123 is the ID (klosternummer) of the record; this is achieved by adding a RealURL configuration as follows for the page (where `_DEFAULT` should be replaced by the page ID for the TYPO3 page as the required »gsn« deviates from the auto-configured »id« the extension suggests).
 
 			'postVarSets' => array(
 				'_DEFAULT' => array(
@@ -51,19 +51,50 @@ To set up the Germania Sacra index, you need
 				),
 			)
 
-7. to serve **linked data** formats based on Accept-headers a mod_rewrite configuration along the following lines can do the job in the site’s .htaccess file (untested for the host name):
+7. to serve **linked data** formats based on Accept-headers a mod_rewrite configuration along the following lines can do the job in the site’s .htaccess file. Monastery resource pages have URIs like http://klosterdatenbank.germania-sacra.de/gsn/609 which 303 redirect as follows:
 
+		* Accept: text/turtle → http://klosterdatenbank.germania-sacra.de/gsn/609.turtle
+		* Accept: application/rdf+xml → http://klosterdatenbank.germania-sacra.de/gsn/609.rdf
+		* Accept: text/json → http://klosterdatenbank.germania-sacra.de/gsn/609.json
+		* Otherwise: http://klosterdatenbank.germania-sacra.de/gsn/609/ (HTML version)
+
+		# Redirects for Germania Sacra Linked Data Content negotiation
+
+		# Redirect the non linked Data queries to the TYPO3 page (with a trailing /)
+		RewriteCond %{HTTP_ACCEPT} !text/turtle
+		RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml
+		RewriteCond %{HTTP_ACCEPT} !text/json
+		RewriteCond %{REQUEST_URI} ^.*/germania-sacra/gsn/([0-9]+)$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1/ [R=303,L]
+
+		# For turtle, RDF and JSON-LD:
+		# 1. Provide a 303 redirect for the relevant Accept headers.
+		# 2. Re-map file name extensions in the path to TYPO3 arguments that create the format and load via Proxy
+
+		# turtle
 		RewriteCond %{HTTP_ACCEPT} text/turtle
-		RewriteCond %{HTTP_HOST} klosterdatenbank.germania-sacra.de
-		RewriteRule .* ?type=1380124799&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=turtle
+		RewriteCond %{REQUEST_URI} ^.*/germania-sacra/gsn/([0-9]+)$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1.turtle [R=303,L]
 
-		RewriteCond %{HTTP_ACCEPT} application/rdf+xml
-		RewriteCond %{HTTP_HOST} klosterdatenbank.germania-sacra.de
-		RewriteRule .* ?type=1378891468&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=rdf&tx_find_find\%5Bdata-fields\%5D=*
+		RewriteCond %{REQUEST_URI} ^(.*)\.turtle$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)\.turtle$ http://%{HTTP_HOST}%1/?type=1380124799&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=turtle [P]
 
+		# RDF
+		RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
+		RewriteCond %{REQUEST_URI} ^.*/germania-sacra/gsn/([0-9]+)$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1.rdf [R=303,L]
+
+		RewriteCond %{REQUEST_URI} ^(.*)\.rdf$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)\.rdf$ http://%{HTTP_HOST}%1/?type=1378891468&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=rdf [P]
+
+		# JSON-LD
 		RewriteCond %{HTTP_ACCEPT} text/json
-		RewriteCond %{HTTP_HOST} klosterdatenbank.germania-sacra.de
-		RewriteRule .* ?type=1369315139&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=json-ld&tx_find_find\%5Bdata-fields\%5D=*
+		RewriteCond %{REQUEST_URI} ^.*/germania-sacra/gsn/([0-9]+)$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1.json [R=303,L]
+
+		RewriteCond %{REQUEST_URI} ^(.*)\.json$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)\.json$ http://%{HTTP_HOST}%1/?type=1369315139&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=json-ld [P]
+
 
 8. **known issue**: the AdW site’s RealURL configuration (as of 2013-11-01) will remove the `type` parameter for the custom page types configured by this setup. This breaks AJAX calls as well as download links.
 
