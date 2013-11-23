@@ -14,14 +14,16 @@
 			<f:render partial="Display/Field/General" arguments="{results:results, document:document, field:'kloster'}"/>
 		</h1>
 
-		<f:render partial="GS/Karte" arguments="{_all}"/>
-		<aside class="linked-data">
-			<h2>Linked Data</h2>
-			<a href="{s:format.regexp(
-				string:'{f:uri.action(addQueryString:1, noCacheHash:1)}',
-				match:'|/$|',
-				replace:'.ttl'
-			)}" title="Klosterdaten im Turtle Format">als Linked Data ansehen</a>
+		<aside>
+			<f:render partial="GS/Karte" arguments="{_all}"/>
+			<section class="linked-data">
+				<h2>Linked Data</h2>
+				<a href="{s:format.regexp(
+					string:'{f:uri.action(addQueryString:1, noCacheHash:1)}',
+					match:'|/$|',
+					replace:'.ttl'
+				)}" title="Klosterdaten im Turtle Format">als Linked Data ansehen</a>
+			</section>
 		</aside>
 		<div class="main">
 			<f:if condition="{document.patrozinium}">

@@ -1,9 +1,10 @@
 .tx_find {
-
+	
+	$asideWidth: 300px;
+	
 	aside {
 		float: right;
-		clear: right;
-		width: 300px;
+		width: $asideWidth;
 		margin: 0 0 1em 1em;
 
 		h2 {
@@ -11,11 +12,13 @@
 		}
 
 		.map {
-			height: 300px;
+			width: $asideWidth;
+			height: $asideWidth;
 			background: #fff;
 		}
 	
-		&.linked-data {
+		.linked-data {
+			margin-top: 1em;
 			text-align: right;
 		}
 	}
@@ -83,10 +86,10 @@
 			margin-top: 2em;
 		}
 		
-		section {
+		.main section {
 			margin-bottom: 1em;
 
-			>* {
+			> * {
 				line-height: 1.5;
 				margin: 0 0 0 12em;
 				padding: 0;
