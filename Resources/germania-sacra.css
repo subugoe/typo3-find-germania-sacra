@@ -1,14 +1,18 @@
 .tx_find aside {
   float: right;
+  clear: right;
   width: 300px;
   margin: 0 0 1em 1em;
 }
-.tx_find aside aside h2 {
+.tx_find aside h2 {
   display: none;
 }
 .tx_find aside .map {
   height: 300px;
   background: #fff;
+}
+.tx_find aside.linked-data {
+  text-align: right;
 }
 .tx_find .mapContainer .infoWindow article.kloster h1 {
   position: static;
@@ -42,6 +46,9 @@
   position: absolute;
   left: 0;
   right: 225px;
+}
+.tx_find article.detail h1 {
+  margin-top: 2em;
 }
 .tx_find article section {
   margin-bottom: 1em;
