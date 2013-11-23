@@ -74,10 +74,10 @@ To set up the Germania Sacra index, you need
 		# turtle
 		RewriteCond %{HTTP_ACCEPT} text/turtle
 		RewriteCond %{REQUEST_URI} ^.*/germania-sacra/gsn/([0-9]+)$
-		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1.turtle [R=303,L]
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)$ http://klosterdatenbank.germania-sacra.de/gsn/$1.ttl [R=303,L]
 
-		RewriteCond %{REQUEST_URI} ^(.*)\.turtle$
-		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)\.turtle$ http://%{HTTP_HOST}%1/?type=1380124799&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=turtle [P]
+		RewriteCond %{REQUEST_URI} ^(.*)\.ttl$
+		RewriteRule ^.*/germania-sacra/gsn/([0-9]+)\.ttl$ http://%{HTTP_HOST}%1/?type=1380124799&tx_find_find\%5Bformat\%5D=data&tx_find_find\%5Bdata-format\%5D=turtle [P]
 
 		# RDF
 		RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
