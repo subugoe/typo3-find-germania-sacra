@@ -48,7 +48,7 @@
 				name="urls"
 				arrays="{
 					url:doc.url,
-					art:doc.url_art
+					art:doc.url_typ
 			}">
 				<f:for each="{urls}" as="url">
 					<f:if condition="{1:url.art} == {1:'Wikipedia'}">
